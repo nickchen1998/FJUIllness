@@ -78,7 +78,7 @@ if question:
     answer = ChatOpenAI(
         model_name="gpt-4o",
         api_key=st.secrets["OPENAI_API_KEY"]
-    ).invoke(question).content
+    ).invoke(f"請使用繁體中文回答我的問題，我的問題是：\"{question}\"").content
     st.session_state['history'].append({
         "role": "user",
         "content": question
