@@ -45,9 +45,15 @@ with st.sidebar:
         [key for key in datasets.keys()]
     )
 
-    st.title("下載對話紀錄")
-    export_data = export_history_to_json(st.session_state['history'])
-    if st.download_button("下載", export_data, "dialogue.json", mime="application/json"):
+    if st.button("清空對話紀錄"):
+        st.session_state['history'] = []
+
+    if st.download_button(
+            "下載對話紀錄",
+            export_history_to_json(st.session_state['history']),
+            "dialogue.json",
+            mime="application/json"
+    ):
         st.session_state['history'] = []  # 下載後清空對話紀錄
 
 # 當資料集切換時，刪除對話紀錄
