@@ -45,12 +45,6 @@ with st.sidebar:
     )
 
     st.title("下載對話紀錄")
-    file_format_option = st.selectbox(
-        "請選擇要下載的檔案格式...",
-        ("JSON",),
-        disabled=True
-    )
-
     export_data = export_history_to_json(st.session_state['history'])
     if st.download_button("下載", export_data, "dialogue.json", mime="application/json"):
         st.session_state['history'] = []  # 下載後清空對話紀錄
