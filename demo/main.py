@@ -69,6 +69,11 @@ st.write(f"目前選擇的資料集為 ”{dataset_option}“，資料來源可�
 question = st.chat_input("請輸入您的訊息...")
 
 if question:
+    st.session_state['history'].append({
+        "role": "user",
+        "content": question
+    })
+
     # with get_mongo_database() as database:
     #     vector_store = MongoDBAtlasVectorSearch(
     #         collection=Collection(database, name="illness"),
@@ -86,10 +91,7 @@ if question:
         model_name="gpt-4o",
         api_key=st.secrets["OPENAI_API_KEY"]
     ).invoke(f"請使用繁體中文回答我的問題，我的問題是：\"{question}\"").content
-    st.session_state['history'].append({
-        "role": "user",
-        "content": question
-    })
+
     st.session_state['history'].append({
         "role": "ai",
         "content": answer,
