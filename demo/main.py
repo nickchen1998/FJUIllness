@@ -45,6 +45,7 @@ with st.sidebar:
         [key for key in datasets.keys()]
     )
 
+    st.title("對話紀錄相關功能")
     if st.button("清空對話紀錄"):
         st.session_state['history'] = []
 
