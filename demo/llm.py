@@ -1,6 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
-from env_settings import EnvSettings
 from langchain_openai.embeddings import OpenAIEmbeddings
 from typing import List
 from langchain_core.documents import Document

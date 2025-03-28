@@ -5,6 +5,7 @@ import streamlit as st
 # from langchain_openai import OpenAIEmbeddings
 # from llm import get_answer
 from export import export_history_to_json
+from langchain_openai import ChatOpenAI
 
 
 def write_history():
@@ -74,7 +75,10 @@ if question:
     #         pre_filter={"category": {"$eq": dataset_option}}
     #     )
     #     answer = get_answer(documents, question)
-    answer = "這個問題目前無法回答，請切換別的資料集或請洽管理人員。"
+    answer = ChatOpenAI(
+        model_name="gpt-4o",
+        api_key=st.secrets["OPENAI_API_KEY"]
+    ).invoke(question).content
     st.session_state['history'].append({
         "role": "user",
         "content": question
